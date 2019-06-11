@@ -9,15 +9,18 @@ import { Router } from '@angular/router';
 
 const TOKEN_HEADER_KEY = 'Authorization';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
 export class Interceptor implements HttpInterceptor {
 
     constructor(private router: Router) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let authReq = req;
-        if (localStorage.getItem("currentUserName") != null) {
-            authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + localStorage.getItem("currentUserName")) });
+
+        if (localStorage.getItem("token") != null) {
+            authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + localStorage.getItem("token")) });
         }
         return next.handle(authReq).pipe(
             map((event: HttpEvent<any>) => {
@@ -32,6 +35,7 @@ export class Interceptor implements HttpInterceptor {
                     status: error.status
                 };
                // this.errorDialogService.openDialog(data);
+               alert(data);
                 return throwError(error);
             })));
     }

@@ -3,7 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Photo} from '../models/Photo';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AddPhotoService {
   constructor (private http: HttpClient) {}
 

@@ -3,7 +3,9 @@ import {Injectable} from "@angular/core";
 import {User} from '../models/User';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RegisterService {
   constructor (private http: HttpClient) {}
 

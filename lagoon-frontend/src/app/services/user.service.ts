@@ -3,7 +3,9 @@ import {Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { PaginatedObject } from '../utils/paginated-object';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
   users: User[];
 

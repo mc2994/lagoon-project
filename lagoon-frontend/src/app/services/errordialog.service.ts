@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 // import { MatDialog } from '@angular/material';
 // import { ErrorDialogComponent } from '../components/errordialog.component';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
 export class ErrorDialogService {
 
     // constructor(public dialog: MatDialog) { }
