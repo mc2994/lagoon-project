@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {routing} from './app.routing';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule,HTTP_INTERCEPTORS  } from '@angular/common/http'; 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home.component';
 import {PhotoList} from './components/photo-list.component';
@@ -16,6 +16,7 @@ import {ImageComments} from './components/image-comments.component';
 import {ImageDetail} from './components/image-detail.component';
 import {PhotoRow} from './components/photo-row.component';
 import {UserManagement} from './components/user-management';
+import { Interceptor } from './guards/app.interceptor';
 
 import {PhotoService} from './services/photo.service';
 import {RegisterService} from './services/register.service';
@@ -54,7 +55,12 @@ import {CommentService} from './services/comment.service';
     UserService,
     UploadPhotoService,
     AddPhotoService,
-    CommentService
+    CommentService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

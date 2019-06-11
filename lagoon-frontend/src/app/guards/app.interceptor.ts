@@ -29,13 +29,16 @@ export class Interceptor implements HttpInterceptor {
                 }
                 return event;
             }, catchError((error: HttpErrorResponse) => {
+                alert("errrororrrrrrrrrrrr");
                 let data = {};
                 data = {
                     reason: error && error.error.reason ? error.error.reason : '',
                     status: error.status
                 };
-               // this.errorDialogService.openDialog(data);
-               alert(data);
+                if(error.status === 404){
+                    alert("errrororrrrrrrrrrrr");
+                    this.router.navigate(['/login']);
+                }
                 return throwError(error);
             })));
     }

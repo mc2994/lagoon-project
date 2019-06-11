@@ -8,10 +8,12 @@ import {MyAlbum} from './components/my-album.component';
 import {AddPhoto} from './components/add-photo.component';
 import {ImageDetail} from './components/image-detail.component';
 import {UserManagement} from './components/user-management';
+import { AuthGuard } from './guards/auth.guard';
 
 const appRoutes: Routes = [
   {
     path: '',
+    canActivate: [AuthGuard],
     redirectTo: '/home',
     pathMatch: 'full'
   },
