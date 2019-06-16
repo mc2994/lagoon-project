@@ -22,8 +22,8 @@
 
   <div class="field">
   <label>Upload Photo</label>
-  <input type="file" (change)="uploadPhotoService.fileChangeEvent($event)" />
-  <button type="button" (click)="uploadPhotoService.upload()" class="ui mini button">Upload</button>
+  <input type="file" (change)="fileChangeEvent($event.target.files)" #file multiple/>
+  <button type="button" (click)="upload()" class="ui mini button">Upload</button>
 
   </div>
   <hr>
