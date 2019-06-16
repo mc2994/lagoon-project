@@ -17,6 +17,7 @@ import com.lagoon.dao.PhotoDao;
 import com.lagoon.model.Photo;
 import com.lagoon.model.User;
 import com.lagoon.util.LagoonUtility;
+import com.lagoon.util.PhotoDTOConverter;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -30,20 +31,12 @@ public class PhotoResource {
 			@RequestPart("file") List<MultipartFile> file) {
 		System.out.println(photo.getUser().getUserName());
 		for (MultipartFile upload : file) {
-			Photo p = new Photo();
+			Photo p = PhotoDTOConverter.convertDTOToModel(photo);
 			p.setImageName(upload.getOriginalFilename());
-			p.setCommentList(photo.getCommentList());
-			p.setCreated(photo.getCreated());
-			p.setDescription(photo.getDescription());
-			p.setLikes(photo.getLikes());
-			p.setPhotoName(photo.getPhotoName());
-			p.setTitle(photo.getTitle());
-			p.setUser(photo.getUser());
-
+			
 			String path = new File("src/main/resources/static/images").getAbsolutePath() + "\\"
 					+ upload.getOriginalFilename();
 			try {
-				photo.setImageName(upload.getOriginalFilename());
 				photoService.save(p);
 				upload.transferTo(new File(path));
 				System.out.println(path);
