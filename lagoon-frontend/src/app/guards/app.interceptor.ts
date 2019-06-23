@@ -35,10 +35,10 @@ export class Interceptor implements HttpInterceptor {
                     reason: error && error.error.reason ? error.error.reason : '',
                     status: error.status
                 };
-                if(error.status === 404){
+               // if(error.status === 404){
                     alert("errrororrrrrrrrrrrr");
                     this.router.navigate(['/login']);
-                }
+               // }
                 return throwError(error);
             })));
     }

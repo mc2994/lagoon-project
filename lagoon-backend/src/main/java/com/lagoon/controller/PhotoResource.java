@@ -7,12 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.lagoon.dao.PhotoDao;
 import com.lagoon.model.Photo;
 import com.lagoon.model.User;
@@ -20,6 +23,7 @@ import com.lagoon.util.LagoonUtility;
 import com.lagoon.util.PhotoDTOConverter;
 
 @RestController
+@PostAuthorize("hasRole('ROLE_PM') or hasRole('ROLE_ADMIN')")
 @RequestMapping("/api/auth")
 public class PhotoResource {
 

@@ -18,7 +18,7 @@ public class RestConfig extends WebMvcConfigurerAdapter  {
 	                .allowedMethods( "GET", "POST", "DELETE" )
 	                .allowedHeaders( "*" )
 	                .allowCredentials( true )
-	                .exposedHeaders( "Authorization" )
+	                .exposedHeaders( "Authorization","content-disposition" )
 	                .maxAge( 3600 );
 	    }
 }

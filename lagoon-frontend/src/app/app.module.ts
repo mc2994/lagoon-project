@@ -16,7 +16,7 @@ import {ImageComments} from './components/image-comments.component';
 import {ImageDetail} from './components/image-detail.component';
 import {PhotoRow} from './components/photo-row.component';
 import {UserManagement} from './components/user-management';
-import { Interceptor } from './guards/app.interceptor';
+// import { Interceptor } from './guards/app.interceptor';
 
 import {PhotoService} from './services/photo.service';
 import {RegisterService} from './services/register.service';
@@ -25,6 +25,7 @@ import {UserService} from './services/user.service';
 import {UploadPhotoService} from './services/upload-photo.service';
 import {AddPhotoService} from './services/add-photo.service';
 import {CommentService} from './services/comment.service';
+import { Interceptor } from './guards/app.interceptor';
 
 @NgModule({
   declarations: [
