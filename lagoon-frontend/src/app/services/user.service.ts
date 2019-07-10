@@ -47,4 +47,10 @@ export class UserService {
     let headers1 = new HttpHeaders({ 'Content-Type': 'application/octet-stream', 'Authorization': 'Bearer ' + localStorage.getItem("token") });
     return this.http.get(url, { headers: headers1, observe: 'response', responseType: 'blob' });
   }
+
+  downloadExcel() {
+    let url = "http://localhost:8080/api/auth/excel";
+    let headers1 = new HttpHeaders({ 'Content-Type': 'application/octet-stream', 'Authorization': 'Bearer ' + localStorage.getItem("token") });
+    return this.http.get(url, { headers: headers1, observe: 'response', responseType: 'blob' });
+  }
 }

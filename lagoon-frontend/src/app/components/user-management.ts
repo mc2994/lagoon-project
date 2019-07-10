@@ -32,6 +32,10 @@ export class UserManagement implements OnInit {
     this.getAllUsers();
   }
 
+  ngOnDestroy(){
+    //this.subscription.unsubscribe();
+  }
+
   getAllUsers() {
     this.userService.getAllUsers(this.page, this.size).subscribe(
       user => {
@@ -79,5 +83,29 @@ export class UserManagement implements OnInit {
       return throwError("fileDownloadError" + error)
 
     })
+  }
+
+  exportToPDF(){
+    this.userService.downloadPDF().subscribe(
+      result=>{
+        var blob = new Blob([result.body], { type: "application/pdf" });
+        let filename = UtilityClass.getFilename(result);
+        UtilityClass.downloadFile(filename, blob);
+      }, error=>{
+            alert("error in pdf donwload...")
+      }
+    )
+  }
+
+  exportToExcel(){
+    this.userService.downloadExcel().subscribe(
+      result=>{
+        var blob = new Blob([result.body], { type: "application/vnd.ms-excel" });
+        let filename = UtilityClass.getFilename(result);
+        UtilityClass.downloadFile(filename, blob);
+      }, error=>{
+            alert("error in excel donwload...")
+      }
+    )
   }
 }
