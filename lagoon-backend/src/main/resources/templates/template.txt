@@ -1,0 +1,19 @@
+<html>
+
+<head></head>
+
+<body style="font-family:Candara;">
+<p>Dear <b>Customer,</b></p>
+
+<p><b>${workflowName}</b> has been commenced by <b>${caseUserName}</b>, and you have been designated as participant to act on <b>${folderName}</b></p> 
+
+<p>Kindly check assigned items in your dashboard.</p>
+
+<p><i>This is a system-generated email. Please do not reply.</i></p> 
+
+<p style="color:red; font-size:12px; font-style:italic; ">This message is for the designated recipient only and may contain confidential and/or privileged information. If you have received it in error, please delete it and advise the sender immediately. 
+You should not copy or use it for any other purpose, nor disclose its contents to any other person.</p>
+
+</body>
+
+</html>

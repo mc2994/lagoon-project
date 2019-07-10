@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -13,10 +14,16 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailSendException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.lagoon.email.components.EmailService;
+import com.lagoon.email.components.EmailServiceImpl;
+import com.lagoon.email.components.Mail;
 import com.lagoon.model.Photo;
 import com.lagoon.reports.util.ExcelBuilder;
 import com.lagoon.reports.util.ExcelDataInput;
@@ -30,6 +37,11 @@ public class PhotoController {
 
 	@Autowired
 	private PhotoService photoService;
+
+	@Autowired
+	private EmailService emailService;
+
+	public final Logger logger = LoggerFactory.getLogger(PhotoController.class);
 
 	@RequestMapping("/allPhotos")
 	public ResponseEntity<List<Photo>> getAllPhotos() throws IOException {
@@ -128,5 +140,29 @@ public class PhotoController {
 
 		return ResponseEntity.ok().contentLength(input.getExportedFile().length)
 				.contentType(MediaType.parseMediaType("application/vnd.ms-excel")).headers(headers).body(resource);
+	}
+
+	private void sendWorkflowEmail() {
+		try {
+//			for (CaseUser user : workflowUserList) {
+			Map<String, Object> model = new HashMap<String, Object>();
+			final Mail mail = new Mail();
+			model.put("workflowName", "workflow namen");
+			model.put("caseUserName", "Mc Kinley Tolentino");
+			model.put("folderName", "music folder");
+			mail.setMailFrom("test.@email.com");
+			mail.setMailTo("tolentinomckinley@yahoo.com");
+			mail.setMailSubject("Workflow Email Notification");
+			mail.setContentType("email");
+			mail.setModel(model);
+			mail.setEmailTemp(Mail.EmailTemplate.WORKFLOW_EMAIL);
+			emailService.sendEmail(mail);
+			logger.info("sending email to workflowUserList : ");
+//			}
+		} catch (MailSendException ex) {
+			ex.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
