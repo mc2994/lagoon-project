@@ -1,0 +1,6 @@
+[submodule "lagoon-project\\lagoon-frontend\\src\\app\\resources\\css\\themes\\default\\assets\\images"]
+	path = lagoon-project\\lagoon-frontend\\src\\app\\resources\\css\\themes\\default\\assets\\images
+	url = https://github.com/mc2994/lagoon-project.git
+[submodule "personal project\\lagoon-project\\lagoon-frontend\\src\\app\\resources\\css\\themes\\default\\assets"]
+	path = personal project\\lagoon-project\\lagoon-frontend\\src\\app\\resources\\css\\themes\\default\\assets
+	url = https://github.com/mc2994/lagoon-project.git
