@@ -30,6 +30,12 @@ export class UserService {
     return this.http.get<PaginatedObject<User>>(tokenUrl, { headers: headers });
   }
 
+  fetchPhotosAync() {
+    let tokenUrl = "http://localhost:8080/api/auth/findPhotosAsync/";
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem("token") });
+    return this.http.get(tokenUrl, { headers: headers });
+  }
+
   getUserByName(userName: string) {
     let tokenUrl = "http://localhost:8080/api/auth/user/userName/" + userName;
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem("token") });
