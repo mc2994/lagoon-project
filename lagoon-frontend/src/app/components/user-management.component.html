@@ -4,13 +4,13 @@
         <!-- <h4>Search: </h4> -->
         <input type="text" name="search" [(ngModel)]="user.firstName" id="search" placeholder="Search...">
         <i class="users icon"></i>
-        <button class="ui primary button" (click)="fetchUsersByName();">
+        <button class="ui primary button" (click)="fetchPhotosAsync();">
             Go
         </button>
         <button type="submit" class="ui icon red button" (click)="exportToPDF()">
             <i class="file pdf outline icon"></i>
         </button>
-        <button type="submit" class="ui icon green button" (click)="exportToExcel()">
+        <button type="submit" class="ui icon green button" (click)="exportRecordWithTimer()">
             <i class="file excel outline icon"></i>
         </button>
         

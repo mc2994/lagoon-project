@@ -20,8 +20,8 @@ import freemarker.template.Configuration;
 @Service("emailService")
 public class EmailServiceImpl implements EmailService {
 
-	@Autowired
-	JavaMailSender mailSender;
+//	@Autowired
+//	JavaMailSender mailSender;
 
 	@Autowired
 	Configuration freeMarkerConfig;
@@ -31,7 +31,7 @@ public class EmailServiceImpl implements EmailService {
 	private ScheduledExecutorService quickService = Executors.newScheduledThreadPool(5);
 
 	public void sendEmail(Mail mail) {
-		MimeMessage mimeMessage = mailSender.createMimeMessage();
+		MimeMessage mimeMessage = null; //mailSender.createMimeMessage();
 
 		try {
 
@@ -53,7 +53,7 @@ public class EmailServiceImpl implements EmailService {
 				@Override
 				public void run() {
 					try {
-						mailSender.send(mimeMessageHelper.getMimeMessage());
+						//mailSender.send(mimeMessageHelper.getMimeMessage());
 						logger.info("sending email nowwwww...");
 					} catch (Exception e) {
 						logger.error("Exception occur while send a mail : ", e);

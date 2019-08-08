@@ -70,14 +70,29 @@ export class UserManagement implements OnInit {
       });
   }
 
+  fetchPhotosAsync() {
+    this.userService.fetchPhotosAync().subscribe(
+      users => {
+        alert("sdadsad")
+      }, error => {
+
+      });
+  }
+
   exportRecordWithTimer() {
-    this.subscription = timer(0, 10000).pipe(
-      switchMap(() => this.userService.downloadPDF())
+    this.subscription = timer(0, 5000).pipe(
+      switchMap(() => this.userService.downloadExcel())
     ).subscribe(result => {
-      var blob = new Blob([result.body], { type: "application/pdf" });
-      let filename = UtilityClass.getFilename(result);
-      UtilityClass.downloadFile(filename, blob);
-      this.subscription.unsubscribe();
+      alert(result.body.type.toString())
+
+      if(result.body.type.toString()!="application/json"){
+        var blob = new Blob([result.body], { type: "application/vnd.ms-excel" });
+        let filename = UtilityClass.getFilename(result);
+        UtilityClass.downloadFile(filename, blob);
+      }else{
+        alert(false);
+      }
+     // this.subscription.unsubscribe();
     }), catchError(error => {
       this.subscription.unsubscribe();
       return throwError("fileDownloadError" + error)
