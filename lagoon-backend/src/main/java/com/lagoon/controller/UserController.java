@@ -1,7 +1,10 @@
 package com.lagoon.controller;
 
 import java.util.Map;
+
 import javax.servlet.ServletException;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.lagoon.config.JwtProvider;
 import com.lagoon.config.JwtResponse;
-import com.lagoon.model.User;
+import com.lagoon.dto.UserDTO;
 import com.lagoon.service.UserService;
 
 @RestController
@@ -49,9 +53,9 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ResponseEntity<User> registerUser(@RequestBody User user) {
+	public ResponseEntity<UserDTO> registerUser(@Valid @RequestBody UserDTO user) {		
 		user.setPassword(encoder.encode(user.getPassword()));
-		userService.save(user);
-		return new ResponseEntity<User>(HttpStatus.OK);
+		//userService.save(user);
+		return new ResponseEntity<UserDTO>(HttpStatus.OK);
 	}
 }

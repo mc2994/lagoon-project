@@ -1,5 +1,8 @@
 package com.lagoon.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +20,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Page<User> findAllUsers(Pageable pageable) {
-		
+
 		return userDao.findAll(pageable);
 	}
 
@@ -28,6 +31,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void save(User user) {
-		userDao.save(user);		
+		userDao.save(user);
 	}
 }

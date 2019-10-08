@@ -7,10 +7,10 @@ import { LoginService } from '../services/login.service';
 })
 export class Login {
   error: string;
-  private model = { 'userName': '', 'password': '' };
-  private currentUserName;
+  public model = { 'userName': '', 'password': '' };
+  public currentUserName;
 
-  constructor(private loginService: LoginService) {
+  constructor(public loginService: LoginService) {
     this.currentUserName = localStorage.getItem("currentUserName");
   }
 

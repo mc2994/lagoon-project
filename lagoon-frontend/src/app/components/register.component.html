@@ -5,9 +5,11 @@
     <label>* First Name</label>
     <div class="two fields">
       <div class="field">
+        <label for="firstName" *ngIf="userError.firstName" style="color: red">{{userError.firstName}}</label>
       <input type="text" name="firstName" placeholder="First Name" [(ngModel)]="newUser.firstName" ngControl="firstName" required>
       </div>
       <div class="field">
+          <label for="firstName" *ngIf="userError.lastName" style="color: red">{{userError.lastName}}</label>
         <input type="text" name="lastName" placeholder="Last Name" [(ngModel)]="newUser.lastName" ngControl="lastName" required>
       </div>
     </div>
@@ -27,7 +29,11 @@
     </div>
   </div>
 
-  <button type="submit" class="ui button" [disabled]="!registerForm.form.valid" >Register</button>
+  <button type="submit" class="ui button" 
+  
+ 
+  
+  >Register</button>
 </form>
 
 <div *ngIf="registered">

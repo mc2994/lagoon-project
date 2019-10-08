@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 })
 export class MyAlbum {
 
-  private photos = new Array<Photo>();
+  public photos = new Array<Photo>();
   private user = new User();
   private selectedPhoto = new Photo();
 

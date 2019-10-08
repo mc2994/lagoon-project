@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  mysql-container:
+    image: mysql/mysql-server:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=lagoon
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    networks:
+      - lagoon-mysql
+    restart: always
+    volumes:
+      - /data/mysql
+      
+      
+  lagoon-backend:
+    image: lagoon-backend
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql-container
+    ports: 
+      - 8080:8080
+    networks:
+      - lagoon-mysql
+    volumes:
+      - /data/spring-boot-app
+      
+networks:
+  lagoon-mysql:

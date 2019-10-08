@@ -123,4 +123,18 @@ export class UserManagement implements OnInit {
       }
     )
   }
+
+  exportToCSV(){
+    this.userService.downloadCSV().subscribe(
+      result=>{
+        var blob = new Blob([result.body], { type: "text/csv"});
+        let filename = UtilityClass.getFilename(result);
+        UtilityClass.downloadFile(filename, blob);
+      }, error=>{
+            alert("error in csv donwload...")
+      }
+    )
+  }
+
+
 }

@@ -1,5 +1,8 @@
 package com.lagoon.controller;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,12 +25,20 @@ public class UserResource {
 
 	@RequestMapping("/user/getAllUsers")
 	public ResponseEntity<Page<User>> findAllUsers(Pageable pageable) {
+		System.out.println(">>>>>>>>>>>>>>>>>>>>> ");
 		return new ResponseEntity<Page<User>>(
 				userService.findAllUsers(pageable), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/user/userName/{userName}", method = RequestMethod.GET)
-	public ResponseEntity<User> findByUserName(@PathVariable("userName") String userName) {		
+	public ResponseEntity<?> findByUserName(@PathVariable("userName") String userName) {
+		User aa = userService.findByUserName(userName);
+		if(aa==null) {
+			Map<String, Object> body = new LinkedHashMap<>();
+			body.put("userName", "Username not found");
+			
+			return new ResponseEntity<>(body,HttpStatus.BAD_REQUEST);
+		}
 		return new ResponseEntity<User>(
 				userService.findByUserName(userName), HttpStatus.OK);
 	}

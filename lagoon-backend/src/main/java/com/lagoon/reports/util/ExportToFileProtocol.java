@@ -6,7 +6,11 @@ public abstract class ExportToFileProtocol {
         
     }
    
-  public void build(PDFDataInput input){
+    public void build(PDFDataInput input){
+        
+    }
+    
+    public void build(CSVDataInput input){
         
     }
   

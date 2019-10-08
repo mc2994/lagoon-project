@@ -10,7 +10,7 @@ export class NavBar{
 
   myLocalStorage;
 
-  constructor (private loginService:LoginService) {
+  constructor (public loginService:LoginService) {
     this.myLocalStorage=localStorage;
   }
 

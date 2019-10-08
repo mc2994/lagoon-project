@@ -1,5 +1,7 @@
 package com.lagoon.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -11,4 +13,5 @@ public interface UserService {
 	User findByUserName(String userName);
 	
 	void save(User user);
+
 }

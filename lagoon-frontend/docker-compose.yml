@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  lagoon-frontend:
+    image: lagoon-frontend
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports: 
+      - 4200:4200
+    networks:
+      - lagoon-mysql
+
+networks:
+  lagoon-mysql:
