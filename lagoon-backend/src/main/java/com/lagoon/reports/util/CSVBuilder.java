@@ -1,60 +1,40 @@
 package com.lagoon.reports.util;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
 
-import com.lagoon.dto.UserDTO;
-import com.opencsv.CSVWriter;
-import com.opencsv.bean.StatefulBeanToCsv;
-import com.opencsv.bean.StatefulBeanToCsvBuilder;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class CSVBuilder extends ExportToFileProtocol {
+import com.lagoon.service.UserService;
 
-	@Override
-	public void build(CSVDataInput input) {
-		FileInputStream inputStream = null;
-		FileInputStream imageInputStream = null;
-		ByteArrayOutputStream outputStream = null;
+public class CSVBuilder {
+
+	@Autowired
+	private UserService userService;
+
+	public void build(PrintWriter pwriter) throws IOException {
+		CSVPrinter csvPrinter = new CSVPrinter(pwriter,
+				CSVFormat.DEFAULT.withHeader("ID", "Name", "Designation", "Company"));
 		try {
-//			ColumnPositionMappingStrategy<CSVInput> mapStrategy = new ColumnPositionMappingStrategy<CSVInput>();
-//			mapStrategy.setType(CSVInput.class);
-			// mapStrategy.generateHeader();
 
-//			String[] columns = new String[] { "id", "name", "population" };
-//			mapStrategy.setColumnMapping(columns);
-//			mapStrategy.setType(CSVInput.class);
-			//mapStrategy.generateHeader();
+			csvPrinter.printRecord("1", "Sundar Pichai ♥", "CEO", "Google");
+			csvPrinter.printRecord("2", "Satya Nadella", "CEO", "Microsoft");
+			csvPrinter.printRecord("3", "Tim cook", "CEO", "Apple");
 
-			outputStream = new ByteArrayOutputStream();
-			Writer writer = new FileWriter("sdadsadas.csv");
-			OutputStreamWriter streamWriter = new OutputStreamWriter(outputStream);
+			csvPrinter.printRecord(Arrays.asList("4", "Mark Zuckerberg", "CEO", "Facebook"));
 
-			StatefulBeanToCsvBuilder<UserDTO> btcsv = new StatefulBeanToCsvBuilder<UserDTO>(writer);
-			 StatefulBeanToCsv<UserDTO> beanWriter =    btcsv.build();
-
-			 List<UserDTO> userdto = new ArrayList<>();
-			 UserDTO aa = new UserDTO();
-			 aa.setFirstName("mc kinley");
-			 userdto.add(aa);
-			 
-			 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			 CSVWriter writers = new CSVWriter(new OutputStreamWriter(baos), ',',
-			 CSVWriter.DEFAULT_QUOTE_CHARACTER, CSVWriter.NO_ESCAPE_CHARACTER, "\n");
-			 String[] entries =  {}; //input.getDataInputs().toArray(); 
-			 writers.writeNext(entries);
-			 writers.close();
-			 
-			// beanWriter.write(userdto);			
-			//input.setExportedFile();
-			outputStream.close();
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pwriter.flush();
+			pwriter.close();
+			csvPrinter.close();
 		}
 	}
 }

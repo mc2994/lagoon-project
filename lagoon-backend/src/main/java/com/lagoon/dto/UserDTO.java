@@ -11,13 +11,11 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import com.lagoon.model.Photo;
 import com.lagoon.model.Role;
-import com.opencsv.bean.CsvBindByName;
 
 public class UserDTO {
 
 	private Long userId;
 	@NotBlank(message="First Name cannot be empty")
-	@CsvBindByName(column = "productCode")
 	private String firstName;
 	
 	@NotBlank(message="Last Name cannot be empty")
