@@ -37,26 +37,32 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> findAll() {
-		List<User> users = new ArrayList<>();
-		User a = new User();
-		a.setUserId(1l);
-		a.setCreated(new Date());
-		a.setFirstName("Mc Kinley");
-		a.setLastName("Tolentino");
-		a.setPassword("sdadsaddsa");
-		a.setUserName("sdadsaddsa");
-		
-		
-		User b = new User();
-		b.setFirstName("Mc Kinley");
-		b.setLastName("Tolentino");
-		b.setCreated(new Date());
-		b.setPassword("sdadsaddsa");
-		b.setUserName("sdadsaddsa");
-		b.setUserId(1l);
-		
-        users.add(a);
-        users.add(b);
-	 	return users;
+		return userDao.findAll();
+//		List<User> users = new ArrayList<>();
+//		User a = new User();
+//		a.setUserId(1l);
+//		a.setCreated(new Date());
+//		a.setFirstName("Mc Kinley");
+//		a.setLastName("Tolentino");
+//		a.setPassword("sdadsaddsa");
+//		a.setUserName("sdadsaddsa");
+//		
+//		
+//		User b = new User();
+//		b.setFirstName("Mc Kinley");
+//		b.setLastName("Tolentino");
+//		b.setCreated(new Date());
+//		b.setPassword("sdadsaddsa");
+//		b.setUserName("sdadsaddsa");
+//		b.setUserId(1l);
+//		
+//        users.add(a);
+//        users.add(b);
+//	 	return users;
+	}
+
+	@Override
+	public User findOne() {
+		return userDao.findByUserId(1L);
 	}
 }
