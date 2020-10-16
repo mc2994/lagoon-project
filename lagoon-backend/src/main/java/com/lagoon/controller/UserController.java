@@ -41,7 +41,7 @@ public class UserController {
 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public ResponseEntity<?>  login(@RequestBody Map<String, String> json) throws ServletException {		
-		String userName = json.get("userName");
+		String userName = json.get("username");
 		String password = json.get("password");
 
 		Authentication authentication = authenticationManager.authenticate(

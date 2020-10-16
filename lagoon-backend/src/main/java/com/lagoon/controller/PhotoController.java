@@ -208,31 +208,6 @@ public class PhotoController {
 		}
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	private void sendWorkflowEmail() {
 		try {
 //			for (CaseUser user : workflowUserList) {
